@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/list.dart';
 
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -30,7 +31,11 @@ class _HomeState extends State<Home> {
       ),
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MainList()),
+          );
           print('menu icon click !!');
         },
         icon: const Icon(Icons.menu),
@@ -80,9 +85,14 @@ class _HomeState extends State<Home> {
           children: [
             Container(
               margin: const EdgeInsets.only(top: 20),
-              color: Colors.blue,
+              // color: Colors.blue,
               width: 250,
               height: 250,
+              child: Image.asset(
+                'assets/logo/logo_main_big_x.png',
+                // height: 300,
+                // width: 300,
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainList extends StatefulWidget {
-  MainList({Key? key}) : super(key: key);
+  const MainList({Key? key}) : super(key: key);
 
   @override
   _MainListState createState() => _MainListState();
