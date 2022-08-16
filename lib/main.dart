@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/list.dart';
 import 'package:woodo/page/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,15 +10,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'WOODO',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        primarySwatch: Colors.amber,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'main',
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: MaterialApp(
+        title: 'WOODO',
+        theme: ThemeData(
+          primaryColor: Colors.white,
+          primarySwatch: Colors.amber,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'main',
+        ),
+        home: const Home(),
       ),
-      home: Home(),
     );
   }
 }
