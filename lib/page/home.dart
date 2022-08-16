@@ -9,6 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  FocusNode focusNode = FocusNode();
   PreferredSizeWidget _appbarWidget() {
     return AppBar(
       title: GestureDetector(
@@ -52,31 +53,10 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // Widget _bodyWidget() {
-  //   // return Container(
-  //   //   child: Image.asset(
-  //   //     'assets/logo/logo_main_x.png',
-  //   //     height: 300,
-  //   //     width: 300,
-  //   //   ),
-  //   // );
-  //   Column(children: [
-  //     Container(
-  //       color: Colors.blue,
-  //     ),
-  //     Container(
-  //       color: Colors.amber,
-  //     ),
-  //     Container(
-  //       color: Colors.blueGrey,
-  //     )
-  //   ],
-  //   )
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: _appbarWidget(),
       // body: _bodyWidget(),
       body: Container(
@@ -90,21 +70,39 @@ class _HomeState extends State<Home> {
               height: 250,
               child: Image.asset(
                 'assets/logo/logo_main_big_x.png',
-                // height: 300,
-                // width: 300,
               ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),
-              color: Colors.amber,
-              width: 400,
-              height: 70,
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              color: Colors.blueGrey,
-              width: 250,
+              width: 300,
               height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    '대여 또는 대출하고 싶은 도서명을 검색해보세요!',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                    labelText: '도서명',
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1, color: Colors.amber),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 1, color: Colors.amber)),
+                    labelStyle: TextStyle(fontSize: 15)),
+              ),
             )
           ],
         ),
