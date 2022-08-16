@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MainList extends StatefulWidget {
   const MainList({Key? key}) : super(key: key);
@@ -87,6 +88,11 @@ class _MainListState extends State<MainList> {
     );
   }
 
+  final oCcy = NumberFormat("#,###", "ko_KR");
+  String calcStringToWon(String priceString) {
+    return '일 ${oCcy.format(int.parse(priceString))}원';
+  }
+
   Widget _bodyWidget() {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -130,7 +136,8 @@ class _MainListState extends State<MainList> {
                         ),
                       ),
                       Text(
-                        '일 ${datas[index]['price']}원',
+                        calcStringToWon('${datas[index]['price']}'),
+                        // '${datas[index]['price']}',
                         style: const TextStyle(
                           fontSize: 13,
                         ),
