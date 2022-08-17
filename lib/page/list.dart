@@ -14,6 +14,7 @@ class _MainListState extends State<MainList> {
   @override
   void initState() {
     super.initState();
+
     datas = [
       {
         "image": "assets/images/java_jeongseok.jpeg",
@@ -39,8 +40,29 @@ class _MainListState extends State<MainList> {
       {
         "image": "assets/images/doit_flutter.jpeg",
         "title": "Do it! Flutter",
-        "location": "역삼동",
+        "location": "도곡1동",
         "price": "600",
+        "status": "가능"
+      },
+      {
+        "image": "assets/images/springboot.jpeg",
+        "title": "스프링부트와 AWS로 혼자 구현하는 웹 서비스",
+        "location": "삼성동",
+        "price": "500",
+        "status": "불가능"
+      },
+      {
+        "image": "assets/images/effective_java.jpeg",
+        "title": "이펙티브 자바 3/E",
+        "location": "대치동",
+        "price": "1200",
+        "status": "가능"
+      },
+      {
+        "image": "assets/images/doit_java.jpeg",
+        "title": "Do it! Java",
+        "location": "삼성동",
+        "price": "300",
         "status": "가능"
       },
     ];
@@ -48,7 +70,6 @@ class _MainListState extends State<MainList> {
 
   PreferredSizeWidget _appbarWidget() {
     return AppBar(
-      // centerTitle: true,
       title: GestureDetector(
         onTap: () {
           print('main click !!');
@@ -65,7 +86,6 @@ class _MainListState extends State<MainList> {
               ),
             ),
           ],
-          // children: [Text('중계동'), Icon(Icons.arrow_drop_down)],
         ),
       ),
       leading: IconButton(
@@ -76,13 +96,12 @@ class _MainListState extends State<MainList> {
       ),
       elevation: 1,
       actions: [
-        // IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-        // IconButton(onPressed: () {}, icon: Icon(Icons.tune)),
         IconButton(
             onPressed: () {},
             icon: Image.asset(
-              'assets/images/bell.png',
+              'assets/icons/bell.png',
               width: 20,
+              color: Colors.white70,
             )),
       ],
     );
@@ -94,11 +113,24 @@ class _MainListState extends State<MainList> {
   }
 
   Widget _bodyWidget() {
+    SizedBox(
+      width: 300,
+      height: 50,
+      child: TextField(
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7.0)),
+          ),
+          labelText: '도서명',
+        ),
+      ),
+    );
     return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(15),
           child: Row(
             children: [
               ClipRRect(
@@ -111,33 +143,43 @@ class _MainListState extends State<MainList> {
               ),
               Expanded(
                 child: SizedBox(
-                  height: 90,
+                  height: 100,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         datas[index]['title'].toString(),
-                        // overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
-                          height: 1,
+                          height: 2,
                         ),
                       ),
+                      Spacer(flex: 1),
                       Text(
                         datas[index]['location'].toString(),
                         style: const TextStyle(
                             fontSize: 12,
                             color: Color.fromARGB(255, 167, 165, 165)),
                       ),
-                      Text(
-                        '대여 ${datas[index]['status']}',
-                        style: const TextStyle(
-                          fontSize: 13,
+                      Spacer(flex: 2),
+                      Text.rich(
+                        TextSpan(
+                          text: '대여 ',
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: datas[index]['status'],
+                                style: TextStyle(
+                                    color: datas[index]['status'] == '가능'
+                                        ? Colors.blue
+                                        : Colors.red))
+                          ],
                         ),
                       ),
+                      Spacer(flex: 1),
                       Text(
                         calcStringToWon('${datas[index]['price']}'),
-                        // '${datas[index]['price']}',
                         style: const TextStyle(
                           fontSize: 13,
                         ),
