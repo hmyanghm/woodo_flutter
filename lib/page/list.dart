@@ -18,45 +18,6 @@ class _MainListState extends State<MainList> {
     super.initState();
   }
 
-  // PreferredSizeWidget _appbarWidget() {
-  //   return AppBar(
-  //     title: GestureDetector(
-  //       onTap: () {
-  //         print('main click !!');
-  //       },
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: const [
-  //           Text(
-  //             '우리동네',
-  //             style: TextStyle(
-  //               fontSize: 20,
-  //               fontWeight: FontWeight.normal,
-  //               color: Colors.white,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //     leading: IconButton(
-  //       onPressed: () {
-  //         Navigator.pop(context);
-  //       },
-  //       icon: const Icon(Icons.arrow_back),
-  //     ),
-  //     elevation: 1,
-  //     actions: [
-  //       IconButton(
-  //           onPressed: () {},
-  //           icon: Image.asset(
-  //             'assets/icons/bell.png',
-  //             width: 20,
-  //             color: Colors.white70,
-  //           )),
-  //     ],
-  //   );
-  // }
-
   final oCcy = NumberFormat("#,###", "ko_KR");
   String calcStringToWon(String priceString) {
     return '일 ${oCcy.format(int.parse(priceString))}원';
@@ -193,8 +154,6 @@ class _MainListState extends State<MainList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: _appbarWidget(),
-      // appBar: BaseAppBar(title: "도서 목록", appBar: AppBar()),
       body: _bodyWidget(),
     );
   }

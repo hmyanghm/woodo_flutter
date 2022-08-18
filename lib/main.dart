@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:woodo/page/app.dart';
+import 'package:woodo/page/chat.dart';
+import 'package:woodo/page/defaultList.dart';
+import 'package:woodo/page/favorite.dart';
+import 'package:woodo/page/home.dart';
+import 'package:woodo/page/list.dart';
+import 'package:woodo/page/mypage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +28,17 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'main',
         ),
-        home: const App(),
+        initialRoute: '/',
+        routes: <String, WidgetBuilder>{
+          '/': (BuildContext context) => const App(),
+          '/home': (BuildContext context) => const Home(),
+          '/menu': (BuildContext context) => const DefaultList(),
+          '/list': (BuildContext context) => const MainList(),
+          '/chat': (BuildContext context) => const Chat(),
+          '/favorite': (BuildContext context) => const MyFavorite(),
+          '/mypage': (BuildContext context) => const MyPage(),
+        },
+        // home: const App(),
       ),
     );
   }

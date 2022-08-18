@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:woodo/repository/contents_repository.dart';
-import 'package:woodo/widget/appBar.dart';
 
 class DefaultList extends StatefulWidget {
   const DefaultList({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class _DefaultListState extends State<DefaultList> {
     return AppBar(
       title: GestureDetector(
         onTap: () {
-          print('main click !!');
+          print('default list main click !!');
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,12 +47,16 @@ class _DefaultListState extends State<DefaultList> {
       elevation: 1,
       actions: [
         IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/icons/bell.png',
-              width: 20,
-              color: Colors.white70,
-            )),
+          icon: const Icon(
+            Icons.notifications_active,
+            color: Colors.white,
+          ),
+          tooltip: '아직 읽지 않은 메세지를 확인하세요.',
+          onPressed: () {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('알림 내역이 없습니다.')));
+          },
+        ),
       ],
     );
   }
@@ -215,13 +218,7 @@ class _DefaultListState extends State<DefaultList> {
   Widget _bottomNavigationBarWidget() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      onTap: (int index) {
-        setState(() {
-          _currentPageIndex = index;
-        });
-        print(index);
-      },
-      currentIndex: _currentPageIndex,
+      currentIndex: 1,
       items: [
         _bottomNavigationBarItem('home', '홈'),
         _bottomNavigationBarItem('pin', '우리동네'),

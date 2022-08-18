@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/defaultList.dart';
 
 class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   const BaseAppBar({Key? key, required this.title, required this.appBar})
@@ -12,9 +13,13 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       leading: IconButton(
         onPressed: () {
-          Navigator.pop(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DefaultList()),
+          );
+          print('menu icon click !!');
         },
-        icon: const Icon(Icons.arrow_back),
+        icon: const Icon(Icons.menu),
       ),
       elevation: 1,
       title: Text(
@@ -27,12 +32,16 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/icons/bell.png',
-              width: 20,
-              color: Colors.white70,
-            )),
+          icon: const Icon(
+            Icons.notifications_active,
+            color: Colors.white,
+          ),
+          tooltip: '아직 읽지 않은 메세지를 확인하세요.',
+          onPressed: () {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('알림 내역이 없습니다.')));
+          },
+        ),
       ],
     );
   }
