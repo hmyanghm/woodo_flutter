@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(milliseconds: 2000),
+      Duration(milliseconds: 3000),
       () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => App()),
@@ -26,8 +26,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     const String mainSplash = 'assets/logo/logo_main_big_x.png';
-    MediaQueryData deviceData = MediaQuery.of(context);
-    Size screenSize = deviceData.size;
 
     return WillPopScope(
       onWillPop: () async => false,
@@ -36,7 +34,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           body: Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(

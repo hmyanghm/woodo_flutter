@@ -23,18 +23,23 @@ class _HomeState extends State<Home> {
               'assets/logo/logo_main_big_x.png',
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 20),
-            width: 300,
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  '대여 또는 대출하고 싶은 도서명을 검색해보세요!',
-                  style: TextStyle(fontSize: 12),
-                ),
-              ],
+          GestureDetector(
+            onTap: () {
+              print('도서명 입력');
+            },
+            child: Container(
+              margin: const EdgeInsets.only(top: 20),
+              width: 300,
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    '대여 또는 대출하고 싶은 도서명을 검색해보세요!',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(
