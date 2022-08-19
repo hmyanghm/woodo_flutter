@@ -33,14 +33,6 @@ class _AppState extends State<App> {
     return Container();
   }
 
-  // final List<Widget> _bodyWidget = [
-  //   Home(),
-  //   MainList(),
-  //   Chat(),
-  //   MyFavorite(),
-  //   MyPage()
-  // ];
-
   BottomNavigationBarItem _bottomNavigationBarItem(
       String iconName, String label) {
     return BottomNavigationBarItem(

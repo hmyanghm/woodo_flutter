@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/defaultList.dart';
 
 class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   const BaseAppBar({Key? key, required this.title, required this.appBar})
@@ -12,7 +13,8 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       leading: IconButton(
         onPressed: () {
-          Navigator.pushNamed(context, '/menu');
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DefaultList()));
           print('menu icon click !!');
         },
         icon: const Icon(Icons.menu),
