@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:woodo/page/chat.dart';
-import 'package:woodo/page/defaultList.dart';
 import 'package:woodo/page/list.dart';
 import 'package:woodo/page/mypage.dart';
+import 'package:woodo/widget/appBar.dart';
 
 import 'favorite.dart';
 import 'home.dart';
@@ -16,50 +16,6 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int _currentPageIndex = 0;
-
-  PreferredSizeWidget _appbarWidget() {
-    return AppBar(
-      title: GestureDetector(
-        onTap: () {
-          print('main click !!');
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              '우리동네 도서관',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.normal,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-      leading: IconButton(
-        onPressed: () {
-          // Navigator.pop(context);
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DefaultList()),
-          );
-          print('menu icon click !!');
-        },
-        icon: const Icon(Icons.menu),
-      ),
-      elevation: 1,
-      actions: [
-        IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'assets/icons/bell.png',
-              width: 20,
-              color: Colors.white70,
-            )),
-      ],
-    );
-  }
 
   Widget _bodyWidget() {
     switch (_currentPageIndex) {
@@ -76,6 +32,14 @@ class _AppState extends State<App> {
     }
     return Container();
   }
+
+  // final List<Widget> _bodyWidget = [
+  //   Home(),
+  //   MainList(),
+  //   Chat(),
+  //   MyFavorite(),
+  //   MyPage()
+  // ];
 
   BottomNavigationBarItem _bottomNavigationBarItem(
       String iconName, String label) {
@@ -122,9 +86,9 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: _appbarWidget(),
-      // appBar: BaseAppBar(title: "우리동네 도서관", appBar: AppBar()),
+      appBar: BaseAppBar(title: "우리동네 도서관", appBar: AppBar()),
       body: _bodyWidget(),
+      // body: _bodyWidget[_currentPageIndex],
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }

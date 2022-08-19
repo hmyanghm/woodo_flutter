@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:woodo/repository/contents_repository.dart';
-import 'package:woodo/widget/appBar.dart';
 
 class MainList extends StatefulWidget {
   const MainList({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainListState createState() => _MainListState();
 }
 
@@ -17,45 +17,6 @@ class _MainListState extends State<MainList> {
   void initState() {
     super.initState();
   }
-
-  // PreferredSizeWidget _appbarWidget() {
-  //   return AppBar(
-  //     title: GestureDetector(
-  //       onTap: () {
-  //         print('main click !!');
-  //       },
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: const [
-  //           Text(
-  //             '우리동네',
-  //             style: TextStyle(
-  //               fontSize: 20,
-  //               fontWeight: FontWeight.normal,
-  //               color: Colors.white,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //     leading: IconButton(
-  //       onPressed: () {
-  //         Navigator.pop(context);
-  //       },
-  //       icon: const Icon(Icons.arrow_back),
-  //     ),
-  //     elevation: 1,
-  //     actions: [
-  //       IconButton(
-  //           onPressed: () {},
-  //           icon: Image.asset(
-  //             'assets/icons/bell.png',
-  //             width: 20,
-  //             color: Colors.white70,
-  //           )),
-  //     ],
-  //   );
-  // }
 
   final oCcy = NumberFormat("#,###", "ko_KR");
   String calcStringToWon(String priceString) {
@@ -117,7 +78,6 @@ class _MainListState extends State<MainList> {
             padding: const EdgeInsets.symmetric(vertical: 15),
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                // color: Colors.blue,
                 padding: const EdgeInsets.all(15),
                 child: Row(
                   children: [
@@ -193,8 +153,6 @@ class _MainListState extends State<MainList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: _appbarWidget(),
-      // appBar: BaseAppBar(title: "도서 목록", appBar: AppBar()),
       body: _bodyWidget(),
     );
   }
