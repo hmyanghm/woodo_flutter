@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/defaultList.dart';
 
 class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
   const BaseAppBar({Key? key, required this.title, required this.appBar})
@@ -13,10 +12,7 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       leading: IconButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DefaultList()),
-          );
+          Navigator.pushNamed(context, '/menu');
           print('menu icon click !!');
         },
         icon: const Icon(Icons.menu),
@@ -38,8 +34,10 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
           ),
           tooltip: '아직 읽지 않은 메세지를 확인하세요.',
           onPressed: () {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('알림 내역이 없습니다.')));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('알림 내역이 없습니다.'),
+              duration: Duration(milliseconds: 300),
+            ));
           },
         ),
       ],

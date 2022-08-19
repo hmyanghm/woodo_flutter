@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:woodo/page/chat.dart';
+import 'package:woodo/page/favorite.dart';
+import 'package:woodo/page/home.dart';
+import 'package:woodo/page/list.dart';
+import 'package:woodo/page/mypage.dart';
 import 'package:woodo/repository/contents_repository.dart';
 
 class DefaultList extends StatefulWidget {
@@ -10,7 +15,7 @@ class DefaultList extends StatefulWidget {
 }
 
 class _DefaultListState extends State<DefaultList> {
-  int _currentPageIndex = 0;
+  int _currentPageIndex = 1;
   List<Map<String, String>> datas = ContentRepository().getContents();
 
   @override
@@ -38,12 +43,6 @@ class _DefaultListState extends State<DefaultList> {
           ],
         ),
       ),
-      leading: IconButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: const Icon(Icons.arrow_back),
-      ),
       elevation: 1,
       actions: [
         IconButton(
@@ -53,8 +52,10 @@ class _DefaultListState extends State<DefaultList> {
           ),
           tooltip: '아직 읽지 않은 메세지를 확인하세요.',
           onPressed: () {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('알림 내역이 없습니다.')));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('알림 내역이 없습니다.'),
+              duration: Duration(milliseconds: 300),
+            ));
           },
         ),
       ],
@@ -111,87 +112,21 @@ class _DefaultListState extends State<DefaultList> {
   }
 
   Widget _bodyWidget() {
-    return Column(
-      children: <Widget>[
-        _searchBar(),
-        Padding(padding: EdgeInsets.only(top: 20)),
-        Expanded(
-          child: ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(vertical: 15),
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                // color: Colors.blue,
-                padding: const EdgeInsets.all(15),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      child: Image.asset(
-                        datas[index]['image'].toString(),
-                        width: 90,
-                        height: 90,
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 100,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              datas[index]['title'].toString(),
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                height: 2,
-                              ),
-                            ),
-                            Spacer(flex: 1),
-                            Text(
-                              datas[index]['location'].toString(),
-                              style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Color.fromARGB(255, 167, 165, 165)),
-                            ),
-                            Spacer(flex: 2),
-                            Text.rich(
-                              TextSpan(
-                                text: '대여 ',
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: datas[index]['status'],
-                                      style: TextStyle(
-                                          color: datas[index]['status'] == '가능'
-                                              ? Colors.blue
-                                              : Colors.red))
-                                ],
-                              ),
-                            ),
-                            Spacer(flex: 1),
-                            Text(
-                              calcStringToWon('${datas[index]['price']}'),
-                              style: const TextStyle(
-                                fontSize: 13,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            itemCount: datas.length,
-            separatorBuilder: (BuildContext context, int index) {
-              return Container(height: 1, color: Colors.black.withOpacity(0.4));
-            },
-          ),
-        ),
-      ],
-    );
+    switch (_currentPageIndex) {
+      case 0:
+        return Home();
+      case 1:
+        return MainList();
+      case 2:
+        return Chat();
+      case 3:
+        return MyFavorite();
+      case 4:
+        return MyPage();
+      default:
+        MainList();
+    }
+    return MainList();
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(
@@ -218,7 +153,12 @@ class _DefaultListState extends State<DefaultList> {
   Widget _bottomNavigationBarWidget() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      currentIndex: 1,
+      onTap: (int index) {
+        setState(() {
+          _currentPageIndex = index;
+        });
+      },
+      currentIndex: _currentPageIndex,
       items: [
         _bottomNavigationBarItem('home', '홈'),
         _bottomNavigationBarItem('pin', '우리동네'),

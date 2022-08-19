@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:woodo/page/chat.dart';
-import 'package:woodo/page/defaultList.dart';
 import 'package:woodo/page/list.dart';
 import 'package:woodo/page/mypage.dart';
 import 'package:woodo/widget/appBar.dart';
@@ -33,6 +32,14 @@ class _AppState extends State<App> {
     }
     return Container();
   }
+
+  // final List<Widget> _bodyWidget = [
+  //   Home(),
+  //   MainList(),
+  //   Chat(),
+  //   MyFavorite(),
+  //   MyPage()
+  // ];
 
   BottomNavigationBarItem _bottomNavigationBarItem(
       String iconName, String label) {
@@ -81,6 +88,7 @@ class _AppState extends State<App> {
       resizeToAvoidBottomInset: false,
       appBar: BaseAppBar(title: "우리동네 도서관", appBar: AppBar()),
       body: _bodyWidget(),
+      // body: _bodyWidget[_currentPageIndex],
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }

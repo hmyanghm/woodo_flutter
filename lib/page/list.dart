@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:woodo/repository/contents_repository.dart';
-import 'package:woodo/widget/appBar.dart';
 
 class MainList extends StatefulWidget {
   const MainList({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MainListState createState() => _MainListState();
 }
 
@@ -78,7 +78,6 @@ class _MainListState extends State<MainList> {
             padding: const EdgeInsets.symmetric(vertical: 15),
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                // color: Colors.blue,
                 padding: const EdgeInsets.all(15),
                 child: Row(
                   children: [
