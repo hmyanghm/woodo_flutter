@@ -10,15 +10,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'WOODO',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        primarySwatch: Colors.amber,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'main',
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: ((context) => SearchBox()),
+        //   ),
+        // );
+      },
+      child: MaterialApp(
+        title: 'WOODO',
+        theme: ThemeData(
+          primaryColor: Colors.white,
+          primarySwatch: Colors.amber,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'main',
+        ),
+        home: App(),
       ),
-      home: App(),
     );
   }
 }

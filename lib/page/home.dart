@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/searchBox.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -42,10 +43,18 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             width: 300,
             height: 50,
             child: TextField(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => SearchBox()),
+                  ),
+                );
+              },
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(

@@ -17,7 +17,7 @@ class BaseAppBar extends StatelessWidget with PreferredSizeWidget {
               context, MaterialPageRoute(builder: (context) => DefaultList()));
           print('menu icon click !!');
         },
-        icon: const Icon(Icons.menu),
+        icon: Icon(Icons.menu),
       ),
       elevation: 1,
       title: Text(
