@@ -5,12 +5,11 @@ import 'package:woodo/page/splash.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Timer(
-    Duration(milliseconds: 1),
-    () => runApp(const MyApp()),
-  );
+  // Timer(
+  //   Duration(milliseconds: 1),
+  //   () => runApp(const MyApp()),
   // );
-  // runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
