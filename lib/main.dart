@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:woodo/page/splash.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  // Timer(
-  //   Duration(milliseconds: 1),
-  //   () => runApp(const MyApp()),
-  // );
   runApp(const MyApp());
+}
+
+class Init {
+  Init._();
+  static final instance = Init._();
+
+  Future<Widget> initialize(BuildContext context) async {
+    return SplashScreen();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -33,14 +37,5 @@ class MyApp extends StatelessWidget {
         home: SplashScreen(),
       ),
     );
-  }
-}
-
-class Init {
-  Init._();
-  static final instance = Init._();
-
-  Future<Widget> initialize(BuildContext context) async {
-    return SplashScreen();
   }
 }
