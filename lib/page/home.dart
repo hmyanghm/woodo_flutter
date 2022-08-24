@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/copy.dart';
 import 'package:woodo/page/searchBox.dart';
 
 class Home extends StatefulWidget {
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => SearchBox()),
+                    builder: ((context) => SearchPage()),
                   ),
                 );
               },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:woodo/page/chat.dart';
 import 'package:woodo/page/list.dart';
 import 'package:woodo/page/mypage.dart';
+import 'package:woodo/router/arguments.dart';
 import 'package:woodo/widget/appBar.dart';
 
 import 'favorite.dart';
