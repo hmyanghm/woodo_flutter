@@ -6,7 +6,6 @@ import 'package:woodo/page/home.dart';
 import 'package:woodo/page/list.dart';
 import 'package:woodo/page/mypage.dart';
 import 'package:woodo/repository/contents_repository.dart';
-import 'package:woodo/router/arguments.dart';
 
 class DefaultList extends StatefulWidget {
   const DefaultList({Key? key}) : super(key: key);
