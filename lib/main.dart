@@ -1,16 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:woodo/page/splash.dart';
+import 'package:woodo/page/app.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  Timer(
-    Duration(milliseconds: 1),
-    () => runApp(const MyApp()),
-  );
-  // );
-  // runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,9 +13,14 @@ class MyApp extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: ((context) => SearchBox()),
+        //   ),
+        // );
       },
       child: MaterialApp(
-        color: Colors.amber,
         title: 'WOODO',
         theme: ThemeData(
           primaryColor: Colors.white,
@@ -31,17 +28,8 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'main',
         ),
-        home: SplashScreen(),
+        home: App(),
       ),
     );
-  }
-}
-
-class Init {
-  Init._();
-  static final instance = Init._();
-
-  Future<Widget> initialize(BuildContext context) async {
-    return SplashScreen();
   }
 }

@@ -1,82 +1,123 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:woodo/repository/contents_repository.dart';
 
 class MainList extends StatefulWidget {
   const MainList({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _MainListState createState() => _MainListState();
 }
 
 class _MainListState extends State<MainList> {
-  List<Map<String, String>> datas = ContentRepository().getContents();
+  _MainListState();
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  List searchKeyword = [];
+  List dbList = [];
+  TextEditingController txtQuery = TextEditingController();
 
   final oCcy = NumberFormat("#,###", "ko_KR");
   String calcStringToWon(String priceString) {
     return '일 ${oCcy.format(int.parse(priceString))}원';
   }
 
+  void loadData() async {
+    String jsonStr = await rootBundle.loadString('assets/bookList.json');
+    var json = jsonDecode(jsonStr);
+    searchKeyword = json;
+    dbList = json;
+    setState(() {});
+  }
+
+  void search(String query) {
+    if (query.isEmpty) {
+      searchKeyword = dbList;
+      setState(() {});
+      return;
+    }
+
+    query = query.toLowerCase();
+    List result = [];
+    searchKeyword.forEach((word) {
+      var title = word["title"].toString().toLowerCase();
+      if (title.contains(query)) {
+        result.add(word);
+      }
+    });
+
+    searchKeyword = result;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    loadData();
+  }
+
   Widget _searchBar() {
     return Container(
       alignment: Alignment.center,
-      child: Column(children: [
-        Container(
-          margin: const EdgeInsets.only(top: 10),
-          width: 300,
-          height: 60,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text(
-                '대여 또는 대출하고 싶은 도서명을 검색해보세요!',
-                style: TextStyle(fontSize: 12),
-              ),
-            ],
+      margin: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Text(
+            '대여 또는 대출하고 싶은 도서명을 검색해보세요!',
+            style: TextStyle(fontSize: 12),
           ),
-        ),
-        const SizedBox(
-          width: 300,
-          height: 50,
-          child: TextField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7.0)),
-              ),
-              labelText: '도서명 검색',
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: Colors.amber),
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.amber)),
-              labelStyle: TextStyle(
-                fontSize: 15,
-                height: 1,
+          SizedBox(
+            height: 10,
+          ),
+          SizedBox(
+            width: 300,
+            height: 50,
+            child: TextField(
+              controller: txtQuery,
+              onChanged: search,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                ),
+                hintText: '도서명 검색',
+                labelStyle: TextStyle(
+                  fontSize: 15,
+                  height: 1,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Colors.amber),
+                ),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(width: 1, color: Colors.amber)),
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () {
+                    txtQuery.text = '';
+                    search(txtQuery.text);
+                  },
+                ),
               ),
             ),
           ),
-        )
-      ]),
+        ],
+      ),
     );
   }
 
-  Widget _bodyWidget() {
+  Widget _bodyWidget(context) {
     return Column(
       children: <Widget>[
         _searchBar(),
-        Padding(padding: EdgeInsets.only(top: 20)),
         Expanded(
           child: ListView.separated(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(vertical: 15),
-            itemBuilder: (BuildContext context, int index) {
+            itemCount: searchKeyword.length,
+            itemBuilder: (context, index) {
+              var bookTitle = searchKeyword[index];
               return Container(
                 padding: const EdgeInsets.all(15),
                 child: Row(
@@ -84,7 +125,7 @@ class _MainListState extends State<MainList> {
                     ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       child: Image.asset(
-                        datas[index]['image'].toString(),
+                        bookTitle['image'].toString(),
                         width: 90,
                         height: 90,
                       ),
@@ -96,7 +137,7 @@ class _MainListState extends State<MainList> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              datas[index]['title'].toString(),
+                              bookTitle['title'].toString(),
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 15,
@@ -106,7 +147,7 @@ class _MainListState extends State<MainList> {
                             ),
                             Spacer(flex: 1),
                             Text(
-                              datas[index]['location'].toString(),
+                              bookTitle['location'].toString(),
                               style: const TextStyle(
                                   fontSize: 12,
                                   color: Color.fromARGB(255, 167, 165, 165)),
@@ -117,9 +158,9 @@ class _MainListState extends State<MainList> {
                                 text: '대여 ',
                                 children: <TextSpan>[
                                   TextSpan(
-                                      text: datas[index]['status'],
+                                      text: bookTitle['status'],
                                       style: TextStyle(
-                                          color: datas[index]['status'] == '가능'
+                                          color: bookTitle['status'] == '가능'
                                               ? Colors.blue
                                               : Colors.red))
                                 ],
@@ -127,7 +168,7 @@ class _MainListState extends State<MainList> {
                             ),
                             Spacer(flex: 1),
                             Text(
-                              calcStringToWon('${datas[index]['price']}'),
+                              calcStringToWon('${bookTitle['price']}'),
                               style: const TextStyle(
                                 fontSize: 13,
                               ),
@@ -140,7 +181,6 @@ class _MainListState extends State<MainList> {
                 ),
               );
             },
-            itemCount: datas.length,
             separatorBuilder: (BuildContext context, int index) {
               return Container(height: 1, color: Colors.black.withOpacity(0.4));
             },
@@ -153,7 +193,7 @@ class _MainListState extends State<MainList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _bodyWidget(),
+      body: _bodyWidget(context),
     );
   }
 }
