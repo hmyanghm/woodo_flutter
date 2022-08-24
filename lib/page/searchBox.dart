@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:woodo/page/list.dart';
-import 'package:woodo/router/arguments.dart';
-import 'package:woodo/router/routing_constants.dart';
 import 'dart:convert';
 
 import 'package:woodo/widget/appBar.dart';
