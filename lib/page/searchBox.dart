@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:woodo/page/defaultList.dart';
+import 'package:woodo/page/list.dart';
 import 'dart:convert';
 
 import 'package:woodo/widget/appBar.dart';
@@ -68,20 +70,7 @@ class SearchPageState extends State<SearchPage> {
                   child: TextButton(
                     onPressed: () {
                       print(searchKeyword[index]);
-                      // txtQuery.text = keyword['title'];
-                      // print('=========== > ${txtQuery.text}');
-                      // search(txtQuery.text);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => Scaffold(
-                      //             appBar:
-                      //                 BaseAppBar(title: '검색', appBar: AppBar()),
-                      //             body: MainList(
-                      //                 arguments:
-                      //                     Arguments(title: keyword['title'])),
-                      //           )),
-                      // );
+                      txtQuery.text = keyword['title'];
                     },
                     child: Align(
                       alignment: Alignment(-0.9, 0.0),
@@ -100,6 +89,10 @@ class SearchPageState extends State<SearchPage> {
             );
           }),
     );
+  }
+
+  Widget _bookListView(searchKeyword) {
+    return Expanded(child: Container());
   }
 
   @override
@@ -137,6 +130,15 @@ class SearchPageState extends State<SearchPage> {
                         },
                       ),
                     ),
+                    onSaved: (word) => txtQuery.text = word!,
+                    onFieldSubmitted: (word) {
+                      print('onFieldSubmitted 들어옴 :::');
+                      print(word);
+                      print('============');
+                      MaterialPageRoute(
+                        builder: (context) => MainList(),
+                      );
+                    },
                   ),
                 ],
               ),
