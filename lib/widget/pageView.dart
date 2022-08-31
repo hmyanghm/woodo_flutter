@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class PageViewWidget extends StatelessWidget {
@@ -26,36 +28,293 @@ class PageViewWidget extends StatelessWidget {
               ),
             ),
             Container(
-              color: Colors.amber,
               margin: EdgeInsets.only(top: 10),
               padding: EdgeInsets.all(12),
-              width: 300,
-              height: 50,
-              // child: Image.asset(
-              //   'assets/splash/dot1.png',
-              //   // width: 100,
-              //   // height: 40,
-              // ),
+              width: 200,
+              height: 40,
+              child: Image.asset(
+                'assets/splash/dot1.png',
+              ),
             ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('회원가입 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                  ),
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('로그인 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 173, 172, 172),
+                  ),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
           ],
         ),
-        Container(
-          color: Colors.orangeAccent.withOpacity(0.5),
-          child: Center(
-            child: Text(
-              '두 번째 페이지',
-              style: TextStyle(fontSize: 10),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.all(12),
+              height: 300,
+              width: 300,
+              child: Image.asset(
+                'assets/splash/splash2.png',
+              ),
             ),
-          ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(12),
+              width: 200,
+              height: 40,
+              child: Image.asset(
+                'assets/splash/dot2.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('회원가입 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                  ),
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('로그인 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 173, 172, 172),
+                  ),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
         ),
-        Container(
-          color: Colors.cyanAccent.withOpacity(0.5),
-          child: Center(
-            child: Text(
-              '세 번째 페이지',
-              style: TextStyle(fontSize: 10),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.all(12),
+              height: 300,
+              width: 300,
+              child: Image.asset(
+                'assets/splash/splash3.png',
+              ),
             ),
-          ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(12),
+              width: 200,
+              height: 40,
+              child: Image.asset(
+                'assets/splash/dot3.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('회원가입 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                  ),
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('로그인 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 173, 172, 172),
+                  ),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.all(12),
+              height: 300,
+              width: 300,
+              child: Image.asset(
+                'assets/splash/splash4.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(12),
+              width: 200,
+              height: 40,
+              child: Image.asset(
+                'assets/splash/dot4.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('회원가입 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                  ),
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('로그인 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 173, 172, 172),
+                  ),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.all(12),
+              height: 300,
+              width: 300,
+              child: Image.asset(
+                'assets/splash/splash5.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(12),
+              width: 200,
+              height: 40,
+              child: Image.asset(
+                'assets/splash/dot5.png',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 50),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('회원가입 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.amber,
+                  ),
+                  child: Text(
+                    '회원가입',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: 300,
+              height: 45,
+              child: ElevatedButton(
+                  onPressed: () {
+                    print('로그인 버튼 CLICK !!');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(255, 173, 172, 172),
+                  ),
+                  child: Text(
+                    '로그인',
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white,
+                    ),
+                  )),
+            )
+          ],
         ),
       ],
     );
