@@ -3,6 +3,7 @@ import 'package:woodo/page/chat.dart';
 import 'package:woodo/page/list.dart';
 import 'package:woodo/page/mypage.dart';
 import 'package:woodo/widget/appBar.dart';
+import 'package:woodo/widget/pageView.dart';
 
 import 'favorite.dart';
 import 'home.dart';
@@ -20,7 +21,8 @@ class _AppState extends State<App> {
   Widget _bodyWidget() {
     switch (_currentPageIndex) {
       case 0:
-        return Home();
+        // return Home();
+        return PageViewWidget();
       case 1:
         return MainList();
       case 2:
@@ -80,7 +82,6 @@ class _AppState extends State<App> {
       resizeToAvoidBottomInset: false,
       appBar: BaseAppBar(title: "우리동네 도서관", appBar: AppBar()),
       body: _bodyWidget(),
-      // body: _bodyWidget[_currentPageIndex],
       bottomNavigationBar: _bottomNavigationBarWidget(),
     );
   }

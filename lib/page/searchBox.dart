@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:woodo/page/app.dart';
 import 'package:woodo/page/defaultList.dart';
+import 'package:woodo/page/home.dart';
 import 'package:woodo/page/list.dart';
 import 'dart:convert';
 
@@ -91,72 +93,106 @@ class SearchPageState extends State<SearchPage> {
     );
   }
 
+  PreferredSizeWidget _appBarWidget() {
+    return AppBar(
+      leading: IconButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => App()));
+        },
+        icon: Icon(Icons.arrow_back),
+      ),
+      elevation: 1,
+      title: Text(
+        '우리동네 도서관',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.notifications_active,
+            color: Colors.white,
+          ),
+          tooltip: '아직 읽지 않은 메세지를 확인하세요.',
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('알림 내역이 없습니다.'),
+              duration: Duration(milliseconds: 300),
+            ));
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _bodyWidget() {
+    return Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 15),
+                TextFormField(
+                  controller: txtQuery,
+                  onChanged: search,
+                  decoration: InputDecoration(
+                    hintText: "도서명 검색",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.clear),
+                      onPressed: () {
+                        txtQuery.text = '';
+                        search(txtQuery.text);
+                      },
+                    ),
+                  ),
+                  onSaved: (word) => txtQuery.text = word!,
+                  onFieldSubmitted: (word) {
+                    print('검색어::: ' + word);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DefaultList()));
+                  },
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 30),
+            height: 25,
+            child: Text(
+              '많이 찾는 책이에요!',
+              style: TextStyle(
+                fontSize: 15,
+                fontFamily: 'chat',
+                color: Colors.black,
+              ),
+            ),
+          ),
+          _recommendView(searchKeyword),
+        ]);
+  }
+
   Widget _bookListView(searchKeyword) {
     return Expanded(child: Container());
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BaseAppBar(title: '우리동네', appBar: AppBar()),
-      body: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 15),
-                  TextFormField(
-                    controller: txtQuery,
-                    onChanged: search,
-                    decoration: InputDecoration(
-                      hintText: "도서명 검색",
-                      hintStyle: TextStyle(color: Colors.grey),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
-                      prefixIcon: Icon(Icons.search),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {
-                          txtQuery.text = '';
-                          search(txtQuery.text);
-                        },
-                      ),
-                    ),
-                    onSaved: (word) => txtQuery.text = word!,
-                    onFieldSubmitted: (word) {
-                      print('onFieldSubmitted 들어옴 :::');
-                      print(word);
-                      print('============');
-                      MaterialPageRoute(
-                        builder: (context) => MainList(),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 30),
-              height: 25,
-              child: Text(
-                '많이 찾는 책이에요!',
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'chat',
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            _recommendView(searchKeyword),
-          ]),
-    );
+    return Scaffold(appBar: _appBarWidget(), body: _bodyWidget());
   }
 }

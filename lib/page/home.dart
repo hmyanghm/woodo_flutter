@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/copy.dart';
 import 'package:woodo/page/searchBox.dart';
 
 class Home extends StatefulWidget {
@@ -10,7 +9,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _currentPageIndex = 0;
+  final int _currentPageIndex = 0;
 
   Widget _bodyWidget() {
     return Container(
