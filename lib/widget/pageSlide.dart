@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:woodo/main.dart';
+import 'package:woodo/page/login.dart';
 import 'package:woodo/page/main.dart';
 
 class PageSlideWidget extends StatefulWidget {
@@ -126,6 +127,8 @@ class _PageSlideWidgetState extends State<PageSlideWidget> {
           child: ElevatedButton(
               onPressed: () {
                 print('로그인 버튼 클릭');
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               style: ElevatedButton.styleFrom(
                 primary: Color.fromARGB(255, 173, 172, 172),

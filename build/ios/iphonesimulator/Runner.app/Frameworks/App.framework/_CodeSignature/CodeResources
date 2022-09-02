@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		PhqPEY6nKgNllt2hFLEzRcSNJ14=
+		clUDeGw6CNRpREBntM46zUA++cI=
 		</data>
 		<key>flutter_assets/assets/bookList.json</key>
 		<data>
@@ -172,10 +172,6 @@
 		<data>
 		yG6abLvaj3rJCPAjYY3NZzmogTU=
 		</data>
-		<key>flutter_assets/assets/splash/spash4.png</key>
-		<data>
-		KG8SIkfZNeq4bJZ2cuFXVJlG/CQ=
-		</data>
 		<key>flutter_assets/assets/splash/splash1.png</key>
 		<data>
 		DKjnXKv0w1CnZg0RIMGiDNYnuuI=
@@ -206,7 +202,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		aWQoXjpTw/5FHvCUah9Pwufqm50=
+		Sv2ocdi9urGNu6pfqeoKSt7X3D8=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -245,11 +241,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PhqPEY6nKgNllt2hFLEzRcSNJ14=
+			clUDeGw6CNRpREBntM46zUA++cI=
 			</data>
 			<key>hash2</key>
 			<data>
-			PyOwS2MwtC57bbAZ0h7k++xVmFH4OaUL9mbCGKZh6K8=
+			xHBv9eIBjXeuJ86/iNk7pRtMoBM3tXPyCs1ErVnJBUc=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/bookList.json</key>
@@ -670,17 +666,6 @@
 			eSofeO48QiDTSfnhbOesE+VbDxwGiLYbTJlujTFbwFc=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/splash/spash4.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			KG8SIkfZNeq4bJZ2cuFXVJlG/CQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			0jLQWIsYuplT2AkSAdY2ZIHuyByBJ+SWNoxuCZ30Bjc=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/splash/splash1.png</key>
 		<dict>
 			<key>hash</key>
@@ -762,11 +747,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			aWQoXjpTw/5FHvCUah9Pwufqm50=
+			Sv2ocdi9urGNu6pfqeoKSt7X3D8=
 			</data>
 			<key>hash2</key>
 			<data>
-			FBDk803kK+zHMR08wsKqVzCP3TQ+A0Kvv8k3fHIcZPQ=
+			yzmOIMkUrqQGoxIaurtMkzlel9ymBflYi6HKK3CRo3w=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
