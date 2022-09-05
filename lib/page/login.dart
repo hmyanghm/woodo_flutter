@@ -27,7 +27,10 @@ class _LoginState extends State<Login> {
       form.save();
       print('Form is valid mobile: $_mobile, password: $_password');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('환영합니다!')),
+        SnackBar(
+          content: Text('환영합니다!'),
+          duration: Duration(milliseconds: 300),
+        ),
       );
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => MainApp())));
