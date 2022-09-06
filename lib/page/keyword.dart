@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/main.dart';
-import 'package:woodo/page/mypage.dart';
-import 'package:woodo/widget/appBar.dart';
 
 class KeywordPage extends StatefulWidget {
   const KeywordPage({Key? key}) : super(key: key);
@@ -11,6 +8,9 @@ class KeywordPage extends StatefulWidget {
 }
 
 class _KeywordPageState extends State<KeywordPage> {
+  late List _keywordList = [];
+  String keyword = "";
+
   PreferredSizeWidget _appBarWidget() {
     return AppBar(
       title: Text(
@@ -61,42 +61,91 @@ class _KeywordPageState extends State<KeywordPage> {
             ),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 20, left: 50),
-          width: 300,
-          height: 50,
-          child: TextField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7.0)),
-              ),
-              labelText: '도서명 검색',
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: Colors.amber),
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1, color: Colors.amber)),
-              labelStyle: TextStyle(
-                fontSize: 15,
-                height: 1,
-              ),
-            ),
-          ),
-        ),
+        // Container(
+        //   margin: EdgeInsets.only(top: 20, left: 50),
+        //   width: 300,
+        //   height: 50,
+        //   child: TextField(
+        //     decoration: InputDecoration(
+        //       prefixIcon: Icon(Icons.search),
+        //       border: OutlineInputBorder(
+        //         borderRadius: BorderRadius.all(Radius.circular(7.0)),
+        //       ),
+        //       labelText: '도서명 검색',
+        //       focusedBorder: OutlineInputBorder(
+        //         borderSide: BorderSide(width: 1, color: Colors.amber),
+        //       ),
+        //       enabledBorder: OutlineInputBorder(
+        //           borderSide: BorderSide(width: 1, color: Colors.amber)),
+        //       labelStyle: TextStyle(
+        //         fontSize: 15,
+        //         height: 1,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         Container(
           margin: EdgeInsets.only(left: 270, top: 10),
-          width: 60,
-          height: 30,
-          child: ElevatedButton(
+          width: 40,
+          height: 40,
+          child: FloatingActionButton(
               onPressed: () {
                 print('등록 버튼 click!!');
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text(
+                          '등록할 키워드',
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                        content: TextField(
+                          onChanged: (String value) {
+                            keyword = value;
+                          },
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                _keywordList.add(keyword);
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              '추가',
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+                    });
               },
               child: Text(
                 '등록',
                 style: TextStyle(fontSize: 13),
               )),
-        )
+        ),
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: _keywordList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Dismissible(
+                  key: Key(_keywordList[index]),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(_keywordList[index]),
+                    ),
+                  ));
+            },
+          ),
+        ),
       ],
     );
   }
