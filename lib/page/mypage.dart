@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:woodo/page/keyword.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -125,7 +126,9 @@ class _MyPageState extends State<MyPage> {
           height: 50,
           child: ElevatedButton(
             onPressed: () {
-              print('대여 도서 목록 click !!');
+              print('키워드 알림 click !!');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => KeywordPage()));
             },
             style: ElevatedButton.styleFrom(
               primary: Colors.white,
