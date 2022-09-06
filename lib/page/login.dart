@@ -29,7 +29,7 @@ class _LoginState extends State<Login> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('환영합니다!'),
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 500),
         ),
       );
       Navigator.push(
