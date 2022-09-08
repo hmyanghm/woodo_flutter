@@ -141,27 +141,6 @@ class _PageSlideWidgetState extends State<PageSlideWidget> {
                 ),
               )),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          width: 280,
-          height: 40,
-          child: ElevatedButton(
-              onPressed: () {
-                print('바로 시작 버튼 클릭');
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainApp()));
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Color.fromARGB(255, 129, 167, 236),
-              ),
-              child: Text(
-                '바로 시작',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
-                ),
-              )),
-        ),
       ],
     );
   }
