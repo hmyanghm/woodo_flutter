@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>145170919224-n21t4vlahl5vmofk6b1lf1k5mtf945ir.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.145170919224-n21t4vlahl5vmofk6b1lf1k5mtf945ir</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCDm0M78KEOckYbqgvJV293FfLDHBmRVUo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>145170919224</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yhm.woodo</string>
+	<key>PROJECT_ID</key>
+	<string>woodo-ab3e0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>woodo-ab3e0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:145170919224:ios:5c971723703c5003109bcd</string>
+</dict>
+</plist>
