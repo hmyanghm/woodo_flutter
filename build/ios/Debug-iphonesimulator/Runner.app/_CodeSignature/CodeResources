@@ -134,7 +134,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		5+EeRK/Nvd/dU2e7u+G2ecrMhws=
+		gt2FOJLQ+nIQed6wM/DRMgW7mwg=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -142,7 +142,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		IjPobB6UqLZ1Ii8FTKTMwdm+eJk=
+		RPYsmq9JPKIwD0J+LCpWM0QCNrg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
@@ -154,7 +154,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		clUDeGw6CNRpREBntM46zUA++cI=
+		0uy/zaj2WaxcsjdM2Vf86riSNBM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/bookList.json</key>
 		<data>
@@ -298,7 +298,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		aGxsFMsKio0hZdX5Npj3nDL4UOg=
+		PhTa5ngYht81v0Y3WwWjAc0tHBY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -310,7 +310,7 @@
 		</data>
 		<key>Frameworks/FMDB.framework/FMDB</key>
 		<data>
-		THTK7vw+ZEdVAkUAG3fGmAg3TsI=
+		Pr+ydtu5T7e28C/TPKiT+gzFMyo=
 		</data>
 		<key>Frameworks/FMDB.framework/Info.plist</key>
 		<data>
@@ -428,6 +428,18 @@
 		<data>
 		SAl24ggLTr3OI1sT4/lkLAXq1Kg=
 		</data>
+		<key>Frameworks/path_provider_ios.framework/Info.plist</key>
+		<data>
+		YvnKCUXlXX69+7Wj+bjg0gWZKgo=
+		</data>
+		<key>Frameworks/path_provider_ios.framework/_CodeSignature/CodeResources</key>
+		<data>
+		+GvKjLhz+37akei7767cEHw5UuU=
+		</data>
+		<key>Frameworks/path_provider_ios.framework/path_provider_ios</key>
+		<data>
+		nPMQu5IWCvxKYnSVxUeggHI24WQ=
+		</data>
 		<key>Frameworks/sqflite.framework/Info.plist</key>
 		<data>
 		aqjcQEY/UeLnZKK/1uaewBXznaM=
@@ -438,11 +450,11 @@
 		</data>
 		<key>Frameworks/sqflite.framework/sqflite</key>
 		<data>
-		EUoDbNaxHZoRf99CrX/CeYbgAzE=
+		TuQPNDxPbIKhe+mDKApl2VK4fAQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		RgiTVgD6NYFsHjEHSXUbuNbjxaQ=
+		Vm28nKadhc3uQ3Z4dMaNvgd45bA=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -683,7 +695,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			IWw9eedIa/hRYLJI+PrgIpoXXfxOyJ61eVTOoumsR5A=
+			HbzuQa/bHe5tXiLDsHFsyGLPQYVhpfQFsxFk6DGe9tY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -697,7 +709,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			i7yeFhox5cTM+0SfR29V0KL2J9q0iJWfiP/2fGOYPCw=
+			JRcGHR2WC70iN31nJ+RMwG6aRrdGropibENJU4kJjt4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
@@ -718,7 +730,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xHBv9eIBjXeuJ86/iNk7pRtMoBM3tXPyCs1ErVnJBUc=
+			ICH7cS+Xren1TsFbLOEhSS0j2KQLKfqlZGPpkhf4cPw=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/bookList.json</key>
@@ -970,7 +982,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6qz44ga23hDQh6Ce1+7+MsWOb2e2wkCQoGxOOqbjCmc=
+			+vgoUN5JZNWL2RVgf68DjxxHwIemolb9KxklBRVZO6w=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -991,7 +1003,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0tAzdOkQzyjqtWHhWgtwnGXZfiL9dg51IMGV6OMhSfg=
+			dYVf/q0wPivZrzvzN17Kfr2IVLoHL4V3V8YvKQFrDlE=
 			</data>
 		</dict>
 		<key>Frameworks/FMDB.framework/Info.plist</key>
@@ -1197,6 +1209,27 @@
 			N+aJT6ZzpIKYTGlixpCnKSOZmCjZH2NOakP0hk+WLI8=
 			</data>
 		</dict>
+		<key>Frameworks/path_provider_ios.framework/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FUStbO6l2dwNpuhxAXL7BeJDsabdbE97nwmWrCeubXw=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_ios.framework/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			APPCMaFtLoHllxUiPcsUPvjd7YPlM0B6FmEnRMiLhPw=
+			</data>
+		</dict>
+		<key>Frameworks/path_provider_ios.framework/path_provider_ios</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pXNwfqCNfmFzUdu69MoXp8RBThXE92hiK3dLspuBmK4=
+			</data>
+		</dict>
 		<key>Frameworks/sqflite.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
@@ -1215,7 +1248,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pIjuiy/JGnECSsQymmhl0OgRTSfYKNslv7RuMS5THhY=
+			mHF2slx3Idll0b4azPianWvzTxZ26ThryAltW1Tx6Z4=
 			</data>
 		</dict>
 		<key>Release.xcconfig</key>
