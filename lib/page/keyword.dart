@@ -8,7 +8,7 @@ class KeywordPage extends StatefulWidget {
 }
 
 class _KeywordPageState extends State<KeywordPage> {
-  late List _keywordList = [];
+  late final List _keywordList = [];
   String keyword = "";
 
   PreferredSizeWidget _appBarWidget() {
