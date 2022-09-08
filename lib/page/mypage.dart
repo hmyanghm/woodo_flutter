@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:woodo/page/keyword.dart';
+import 'package:woodo/page/login.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -28,7 +29,7 @@ class _MyPageState extends State<MyPage> {
         Container(
           margin: const EdgeInsets.only(top: 20),
           width: 300,
-          height: 60,
+          // height: 150,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -53,6 +54,23 @@ class _MyPageState extends State<MyPage> {
                         borderRadius: new BorderRadius.circular(10.0),
                       )),
                   child: Text('프로필 수정'),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  print('로그아웃 click !!');
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) => Login(),
+                      ),
+                      (route) => false);
+                },
+                child: Text(
+                  '로그아웃',
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
                 ),
               ),
             ],
