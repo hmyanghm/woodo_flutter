@@ -58,7 +58,7 @@ class _MyPageState extends State<MyPage> {
               ),
               TextButton(
                 onPressed: () {
-                  print('로그아웃 click !!');
+                  print('로그아웃 click !!!');
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
