@@ -4,7 +4,7 @@ platform :ios, '10.0'
 # Override Firebase SDK Version
 $FirebaseSDKVersion = '6.33.0'
 
-# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
