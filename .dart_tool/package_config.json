@@ -17,7 +17,7 @@
       "name": "async",
       "rootUri": "file:///Users/yang-a/development/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.9.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.14"
     },
     {
       "name": "boolean_selector",
@@ -149,7 +149,7 @@
       "name": "flutter",
       "rootUri": "file:///Users/yang-a/development/flutter/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_lints",
@@ -362,7 +362,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-09-20T01:21:35.655524Z",
+  "generated": "2022-09-20T01:56:56.556253Z",
   "generator": "pub",
-  "generatorVersion": "2.17.6"
+  "generatorVersion": "2.18.1"
 }
