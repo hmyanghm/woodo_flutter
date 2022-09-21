@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:woodo/main.dart';
 import 'package:woodo/page/keyword.dart';
-import 'package:woodo/page/login.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -62,7 +62,7 @@ class _MyPageState extends State<MyPage> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => Login(),
+                        builder: (BuildContext context) => MyApp(),
                       ),
                       (route) => false);
                 },

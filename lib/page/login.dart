@@ -12,10 +12,7 @@ class _LoginState extends State<Login> {
   late ScrollController _scrollController = ScrollController();
   final _formKey = GlobalKey<FormState>();
 
-  var _isCheck = false;
   String _mobile = "";
-  String _password = "";
-  bool _isObscure = true;
 
   bool isValidPhoneNumberFormat() {
     print('핸드폰번호 형식 체크');
@@ -39,7 +36,7 @@ class _LoginState extends State<Login> {
 
     if (form!.validate()) {
       form.save();
-      print('Form is valid mobile: $_mobile, password: $_password');
+      print('Form is valid mobile: $_mobile');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('환영합니다!'),
@@ -49,14 +46,21 @@ class _LoginState extends State<Login> {
       Navigator.push(
           context, MaterialPageRoute(builder: ((context) => MainApp())));
     } else {
-      print('Form is invalid mobile: $_mobile, password: $_password');
+      print('Form is invalid mobile: $_mobile');
     }
   }
 
   PreferredSizeWidget appBarWidget() {
     return AppBar(
-      title: Text('로그인'),
+      title: Text(
+        '회원가입 / 로그인',
+        style: TextStyle(
+          color: Colors.black87,
+          fontSize: 15,
+        ),
+      ),
       backgroundColor: Colors.white,
+      shadowColor: Colors.white,
     );
   }
 
@@ -70,13 +74,36 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Container(
-                width: 200,
+                width: 150,
                 child: Image.asset(
                   'assets/logo/logo_main_big_x.png',
                 ),
               ),
+              Column(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(top: 30, bottom: 40),
+                    child: Text(
+                      '반갑습니다.\n우리동네 도서관입니다.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'chat',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '서비스 이용을 위해 핸드폰 번호를 입력해주세요.',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
               Container(
-                margin: EdgeInsets.only(top: 50),
+                margin: EdgeInsets.only(top: 10),
                 width: double.infinity,
                 child: TextFormField(
                   onTap: () {
@@ -120,61 +147,8 @@ class _LoginState extends State<Login> {
                   },
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                child: TextFormField(
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: _isObscure,
-                  obscuringCharacter: '*',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                      hintText: '비밀번호 입력',
-                      hintStyle: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade300,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 1, color: Colors.amber),
-                      ),
-                      suffixIcon: Align(
-                        widthFactor: 1.0,
-                        heightFactor: 1.0,
-                        child: IconButton(
-                          icon: Icon(_isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          },
-                        ),
-                      )),
-                  onSaved: (value) {
-                    setState(() {
-                      _password = value!;
-                    });
-                  },
-                  validator: (value) {
-                    _password = value!;
-                    if (value.isEmpty) {
-                      return '비밀번호를 입력하세요.';
-                    } else if (value.length < 4) {
-                      return '비밀번호는 4자 이상 입력해주세요.';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-              ),
               Container(
-                margin: EdgeInsets.only(top: 20),
+                margin: EdgeInsets.only(top: 50),
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
@@ -183,71 +157,16 @@ class _LoginState extends State<Login> {
                       validateAndSave();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.amber,
+                      onPrimary: Colors.amber,
                     ),
                     child: Text(
-                      '로그인',
+                      '다음',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
                       ),
                     )),
               ),
-              CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(
-                  '자동 로그인',
-                  style: TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-                value: _isCheck,
-                controlAffinity: ListTileControlAffinity.leading,
-                onChanged: (value) {
-                  setState(() {
-                    _isCheck = value!;
-                  });
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: SizedBox(
-                  height: 100,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Colors.black,
-                          textStyle:
-                              TextStyle(fontSize: 13, fontFamily: 'main'),
-                        ),
-                        child: Text('비밀번호 찾기'),
-                        onPressed: () {
-                          print('비밀번호 찾기 Click !!');
-                        },
-                      ),
-                      Text(
-                        ' │ ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: Colors.black,
-                          textStyle:
-                              TextStyle(fontSize: 13, fontFamily: 'main'),
-                        ),
-                        child: Text('회원가입'),
-                        onPressed: () {
-                          print('회원가입 Click !!');
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              )
             ],
           ),
         ),
