@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,9 +9,11 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   late ScrollController _scrollController = ScrollController();
+  TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
+  bool visibilityAuth = false;
   String _mobile = "";
+  String _auth = "";
 
   bool isValidPhoneNumberFormat() {
     print('핸드폰번호 형식 체크');
@@ -35,19 +36,27 @@ class _LoginState extends State<Login> {
     final form = _formKey.currentState;
 
     if (form!.validate()) {
-      form.save();
       print('Form is valid mobile: $_mobile');
+      _changed(true);
+      form.save();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('환영합니다!'),
           duration: Duration(milliseconds: 500),
         ),
       );
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => MainApp())));
+      // SMS 인증 완료 후 넘기기
+      // Navigator.push(
+      //     context, MaterialPageRoute(builder: ((context) => MainApp())));
     } else {
       print('Form is invalid mobile: $_mobile');
     }
+  }
+
+  void _changed(bool visibility) {
+    setState(() {
+      visibilityAuth = visibility;
+    });
   }
 
   PreferredSizeWidget appBarWidget() {
@@ -64,51 +73,25 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget bodyWidget() {
-    return SingleChildScrollView(
-      controller: _scrollController,
-      child: Padding(
-        padding: const EdgeInsets.all(60.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
+  Widget visibilityAuthTrue() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          Row(
             children: [
-              Container(
-                width: 150,
-                child: Image.asset(
-                  'assets/logo/logo_main_big_x.png',
-                ),
-              ),
-              Column(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.only(top: 30, bottom: 40),
-                    child: Text(
-                      '반갑습니다.\n우리동네 도서관입니다.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'chat',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '서비스 이용을 위해 핸드폰 번호를 입력해주세요.',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                width: double.infinity,
+              Flexible(
+                flex: 2,
                 child: TextFormField(
+                  controller: _textEditingController,
+                  onChanged: (value) {
+                    setState(() {
+                      value = _textEditingController.text;
+                    });
+                  },
                   onTap: () {
                     _scrollController.animateTo(
-                      234.115438191883,
+                      100.115438191883,
                       duration: Duration(milliseconds: 300),
                       curve: Curves.ease,
                     );
@@ -140,27 +123,184 @@ class _LoginState extends State<Login> {
                     if (value.isEmpty) {
                       return '핸드폰번호를 입력하세요.';
                     } else if (!isValidPhoneNumberFormat()) {
-                      return '핸드폰번호 형식이 맞지 않습니다.';
+                      return '잘못된 핸드폰번호입니다.';
                     } else {
                       return null;
                     }
                   },
                 ),
               ),
+              Flexible(
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.all(18),
+                    backgroundColor: Colors.black,
+                  ),
+                  onPressed: () {
+                    print('인증 재요청');
+                  },
+                  child: Text(
+                    '인증 재요청',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 3),
+            width: double.infinity,
+            child: TextFormField(
+              onTap: () {
+                _scrollController.animateTo(
+                  100.115438191883,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.ease,
+                );
+              },
+              keyboardType: TextInputType.number,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                hintText: '인증번호 입력',
+                hintStyle: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey.shade300,
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Colors.amber),
+                ),
+              ),
+              onSaved: (value) {
+                setState(() {
+                  _auth = value!;
+                });
+              },
+              validator: (value) {
+                _auth = value!;
+                if (value.isEmpty) {
+                  return '인증번호를 입력하세요.';
+                  // } else if (!isValidPhoneNumberFormat()) {
+                  // return '인증번호가 정확하지 않습니다.';
+                } else {
+                  return null;
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget visibilityAuthFalse() {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      width: double.infinity,
+      child: TextFormField(
+        controller: _textEditingController,
+        onTap: () {
+          _scrollController.animateTo(
+            100.115438191883,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        },
+        keyboardType: TextInputType.number,
+        textAlign: TextAlign.start,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          hintText: '핸드폰번호 입력',
+          hintStyle: TextStyle(
+            fontSize: 13,
+            color: Colors.grey.shade300,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.amber),
+          ),
+        ),
+        onSaved: (value) {
+          setState(() {
+            _mobile = value!;
+          });
+        },
+        validator: (value) {
+          _mobile = value!;
+          if (value.isEmpty) {
+            return '핸드폰번호를 입력하세요.';
+          } else if (!isValidPhoneNumberFormat()) {
+            return '잘못된 핸드폰번호입니다.';
+          } else {
+            return null;
+          }
+        },
+      ),
+    );
+  }
+
+  Widget bodyWidget() {
+    return SingleChildScrollView(
+      controller: _scrollController,
+      child: Padding(
+        padding: const EdgeInsets.all(60.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(
+                width: 150,
+                child: Image.asset(
+                  'assets/logo/logo_main_big_x.png',
+                ),
+              ),
+              Column(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(top: 30, bottom: 30),
+                    child: Text(
+                      '반갑습니다.\n우리동네 도서관입니다.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'chat',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '서비스 이용을 위해 핸드폰 번호를 입력해주세요.',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+              visibilityAuth ? visibilityAuthTrue() : visibilityAuthFalse(),
               Container(
-                margin: EdgeInsets.only(top: 50),
+                margin: EdgeInsets.only(top: 20),
                 width: double.infinity,
                 height: 45,
                 child: ElevatedButton(
                     onPressed: () {
-                      print('로그인 버튼 클릭 !!');
+                      print('핸드폰번호 인증 클릭 !!');
                       validateAndSave();
                     },
                     style: ElevatedButton.styleFrom(
                       onPrimary: Colors.amber,
                     ),
                     child: Text(
-                      '다음',
+                      visibilityAuth ? '로그인' : '인증요청',
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.white,
