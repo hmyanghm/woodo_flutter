@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:woodo/page/main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -46,8 +47,8 @@ class _LoginState extends State<Login> {
         ),
       );
       // SMS 인증 완료 후 넘기기
-      // Navigator.push(
-      //     context, MaterialPageRoute(builder: ((context) => MainApp())));
+      Navigator.push(
+          context, MaterialPageRoute(builder: ((context) => MainApp())));
     } else {
       print('Form is invalid mobile: $_mobile');
     }
