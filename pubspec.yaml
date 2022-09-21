@@ -74,11 +74,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/svg/
-    - assets/profile/
     - assets/logo/
     - assets/icons/
-    - assets/splash/
+    - assets/main/
     - assets/person.json
     - assets/recommend.json
     - assets/bookList.json
