@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:woodo/page/app.dart';
 import 'package:woodo/page/defaultList.dart';
-import 'package:woodo/page/home.dart';
-import 'package:woodo/page/list.dart';
 import 'dart:convert';
-
-import 'package:woodo/widget/appBar.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPageState createState() => SearchPageState();
@@ -97,8 +92,7 @@ class SearchPageState extends State<SearchPage> {
     return AppBar(
       leading: IconButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => App()));
+          Navigator.pop(context);
         },
         icon: Icon(Icons.arrow_back),
       ),

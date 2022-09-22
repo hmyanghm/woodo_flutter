@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:woodo/page/app.dart';
+import 'package:woodo/widget/pageSlide.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    precacheImage(Image.asset('assets/main/main_1.png').image, context);
+    precacheImage(Image.asset('assets/main/main_2.png').image, context);
+    precacheImage(Image.asset('assets/main/main_3.png').image, context);
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'main',
         ),
-        home: App(),
+        home: PageSlideWidget(),
       ),
     );
   }

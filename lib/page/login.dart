@@ -10,7 +10,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   late ScrollController _scrollController = ScrollController();
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool visibilityAuth = false;
   String _mobile = "";
