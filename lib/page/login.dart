@@ -15,6 +15,7 @@ class _LoginState extends State<Login> {
   bool visibilityAuth = false;
   String _mobile = "";
   String _auth = "";
+  bool isAuthCheck = false;
 
   bool isValidPhoneNumberFormat() {
     print('핸드폰번호 형식 체크');
@@ -46,9 +47,6 @@ class _LoginState extends State<Login> {
           duration: Duration(milliseconds: 500),
         ),
       );
-      // SMS 인증 완료 후 넘기기
-      Navigator.push(
-          context, MaterialPageRoute(builder: ((context) => MainApp())));
     } else {
       print('Form is invalid mobile: $_mobile');
     }
@@ -57,6 +55,12 @@ class _LoginState extends State<Login> {
   void _changed(bool visibility) {
     setState(() {
       visibilityAuth = visibility;
+    });
+  }
+
+  void _authCheckChanged(bool authCheck) {
+    setState(() {
+      isAuthCheck = authCheck;
     });
   }
 
@@ -190,11 +194,38 @@ class _LoginState extends State<Login> {
                   return '인증번호를 입력하세요.';
                   // } else if (!isValidPhoneNumberFormat()) {
                   // return '인증번호가 정확하지 않습니다.';
+                } else if (value.length != 4) {
+                  return '인증번호는 4자리입니다.';
                 } else {
+                  _authCheckChanged(true);
                   return null;
                 }
               },
             ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 20),
+            width: double.infinity,
+            height: 45,
+            child: ElevatedButton(
+                onPressed: () {
+                  print('로그인 버튼 클릭 !!');
+                  validateAndSave();
+                  if (isAuthCheck == true) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: ((context) => MainApp())));
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.amber,
+                ),
+                child: Text(
+                  '로그인',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                )),
           ),
         ],
       ),
@@ -202,50 +233,75 @@ class _LoginState extends State<Login> {
   }
 
   Widget visibilityAuthFalse() {
-    return Container(
-      margin: EdgeInsets.only(top: 10),
-      width: double.infinity,
-      child: TextFormField(
-        controller: _textEditingController,
-        onTap: () {
-          _scrollController.animateTo(
-            100.115438191883,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.ease,
-          );
-        },
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.start,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          hintText: '핸드폰번호 입력',
-          hintStyle: TextStyle(
-            fontSize: 13,
-            color: Colors.grey.shade300,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Colors.amber),
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          width: double.infinity,
+          child: TextFormField(
+            controller: _textEditingController,
+            onTap: () {
+              _scrollController.animateTo(
+                100.115438191883,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.ease,
+              );
+            },
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.start,
+            decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              hintText: '핸드폰번호 입력',
+              hintStyle: TextStyle(
+                fontSize: 13,
+                color: Colors.grey.shade300,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: Colors.amber),
+              ),
+            ),
+            onSaved: (value) {
+              setState(() {
+                _mobile = value!;
+              });
+            },
+            validator: (value) {
+              _mobile = value!;
+              if (value.isEmpty) {
+                return '핸드폰번호를 입력하세요.';
+              } else if (!isValidPhoneNumberFormat()) {
+                return '잘못된 핸드폰번호입니다.';
+              } else {
+                return null;
+              }
+            },
           ),
         ),
-        onSaved: (value) {
-          setState(() {
-            _mobile = value!;
-          });
-        },
-        validator: (value) {
-          _mobile = value!;
-          if (value.isEmpty) {
-            return '핸드폰번호를 입력하세요.';
-          } else if (!isValidPhoneNumberFormat()) {
-            return '잘못된 핸드폰번호입니다.';
-          } else {
-            return null;
-          }
-        },
-      ),
+        Container(
+          margin: EdgeInsets.only(top: 20),
+          width: double.infinity,
+          height: 45,
+          child: ElevatedButton(
+              onPressed: () {
+                print('핸드폰번호 인증 클릭 !!');
+                validateAndSave();
+              },
+              style: ElevatedButton.styleFrom(
+                onPrimary: Colors.amber,
+              ),
+              child: Text(
+                '인증요청',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              )),
+        ),
+      ],
     );
   }
 
@@ -288,26 +344,6 @@ class _LoginState extends State<Login> {
                 ],
               ),
               visibilityAuth ? visibilityAuthTrue() : visibilityAuthFalse(),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                width: double.infinity,
-                height: 45,
-                child: ElevatedButton(
-                    onPressed: () {
-                      print('핸드폰번호 인증 클릭 !!');
-                      validateAndSave();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.amber,
-                    ),
-                    child: Text(
-                      visibilityAuth ? '로그인' : '인증요청',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.white,
-                      ),
-                    )),
-              ),
             ],
           ),
         ),
