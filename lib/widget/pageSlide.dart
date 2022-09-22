@@ -11,14 +11,11 @@ class PageSlideWidget extends StatefulWidget {
 
 class _PageSlideWidgetState extends State<PageSlideWidget> {
   int _currentIndex = 0;
-
   List splash = [
     'assets/main/main_1.png',
     'assets/main/main_2.png',
     'assets/main/main_3.png',
-    // 'assets/splash/001.png',
   ];
-
   final CarouselController _controller = CarouselController();
 
   PreferredSizeWidget _appBarWidget() {
@@ -39,32 +36,29 @@ class _PageSlideWidgetState extends State<PageSlideWidget> {
     return Column(
       children: [
         Center(
-          child: Container(
-            // margin: EdgeInsets.only(top: 50),
-            child: CarouselSlider(
-              carouselController: _controller,
-              options: CarouselOptions(
-                height: getScreenHeight * 0.8,
-                viewportFraction: 1.0,
-                autoPlay: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 300),
-                initialPage: 0,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-              ),
-              items: [0, 1, 2].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Image.asset(
-                      splash[i],
-                    );
-                  },
-                );
-              }).toList(),
+          child: CarouselSlider(
+            carouselController: _controller,
+            options: CarouselOptions(
+              height: getScreenHeight * 0.8,
+              viewportFraction: 1.0,
+              autoPlay: true,
+              // autoPlayAnimationDuration: Duration(milliseconds: 300),
+              initialPage: 0,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
             ),
+            items: [0, 1, 2].map((i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Image.asset(
+                    splash[i],
+                  );
+                },
+              );
+            }).toList(),
           ),
         ),
         Row(
