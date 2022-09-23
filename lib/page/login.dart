@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:woodo/page/main.dart';
 
 class Login extends StatefulWidget {
@@ -41,12 +42,6 @@ class _LoginState extends State<Login> {
       print('Form is valid mobile: $_mobile');
       _changed(true);
       form.save();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('환영합니다!'),
-          duration: Duration(milliseconds: 500),
-        ),
-      );
     } else {
       print('Form is invalid mobile: $_mobile');
     }
@@ -143,6 +138,7 @@ class _LoginState extends State<Login> {
                   ),
                   onPressed: () {
                     print('인증 재요청');
+                    showToastReAuth();
                   },
                   child: Text(
                     '인증 재요청',
@@ -217,7 +213,7 @@ class _LoginState extends State<Login> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.amber,
+                  primary: Colors.amber,
                 ),
                 child: Text(
                   '로그인',
@@ -289,9 +285,10 @@ class _LoginState extends State<Login> {
               onPressed: () {
                 print('핸드폰번호 인증 클릭 !!');
                 validateAndSave();
+                showToast();
               },
               style: ElevatedButton.styleFrom(
-                onPrimary: Colors.amber,
+                primary: Colors.amber,
               ),
               child: Text(
                 '인증요청',
@@ -348,6 +345,28 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+
+  void showToast() {
+    Fluttertoast.showToast(
+      msg: '인증번호가 발송되었습니다.',
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 15,
+      toastLength: Toast.LENGTH_LONG,
+    );
+  }
+
+  void showToastReAuth() {
+    Fluttertoast.showToast(
+      msg: '인증번호가 재발송되었습니다.',
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 15,
+      toastLength: Toast.LENGTH_LONG,
     );
   }
 

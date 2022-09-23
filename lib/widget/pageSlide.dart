@@ -10,13 +10,13 @@ class PageSlideWidget extends StatefulWidget {
 }
 
 class _PageSlideWidgetState extends State<PageSlideWidget> {
+  final CarouselController _controller = CarouselController();
   int _currentIndex = 0;
   List splash = [
     'assets/main/main_1.png',
     'assets/main/main_2.png',
-    'assets/main/main_3.png',
+    'assets/main/main_3.png'
   ];
-  final CarouselController _controller = CarouselController();
 
   PreferredSizeWidget _appBarWidget() {
     return AppBar(
@@ -42,7 +42,7 @@ class _PageSlideWidgetState extends State<PageSlideWidget> {
               height: getScreenHeight * 0.8,
               viewportFraction: 1.0,
               autoPlay: true,
-              // autoPlayAnimationDuration: Duration(milliseconds: 300),
+              autoPlayAnimationDuration: Duration(milliseconds: 300),
               initialPage: 0,
               onPageChanged: (index, reason) {
                 setState(() {
