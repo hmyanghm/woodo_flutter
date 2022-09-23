@@ -138,6 +138,7 @@ class _LoginState extends State<Login> {
                   ),
                   onPressed: () {
                     print('인증 재요청');
+                    showToastReAuth();
                   },
                   child: Text(
                     '인증 재요청',
@@ -350,6 +351,17 @@ class _LoginState extends State<Login> {
   void showToast() {
     Fluttertoast.showToast(
       msg: '인증번호가 발송되었습니다.',
+      gravity: ToastGravity.TOP,
+      backgroundColor: Colors.black,
+      textColor: Colors.white,
+      fontSize: 15,
+      toastLength: Toast.LENGTH_LONG,
+    );
+  }
+
+  void showToastReAuth() {
+    Fluttertoast.showToast(
+      msg: '인증번호가 재발송되었습니다.',
       gravity: ToastGravity.TOP,
       backgroundColor: Colors.black,
       textColor: Colors.white,
